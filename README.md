@@ -1,3 +1,3 @@
 # mk1m.github.io
-website in development...
+personal website
 (optimized for chrome on mac)
