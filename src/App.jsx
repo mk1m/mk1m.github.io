@@ -1,6 +1,6 @@
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import BioSwitcher from './components/BioSwitcher'
+import Education from './components/Education'
 import Timeline from './components/Timeline'
 import Projects from './components/Projects'
 import SkillsBento from './components/SkillsBento'
@@ -9,13 +9,10 @@ import Footer from './components/Footer'
 
 export default function App() {
   return (
-    <div
-      className="portfolio-shell min-h-screen bg-black text-white selection:bg-white selection:text-black"
-      style={{ backgroundColor: '#000000' }}
-    >
+    <div className="portfolio-shell">
       <Navbar />
       <Hero />
-      <BioSwitcher />
+      <Education />
       <Timeline />
       <Projects />
       <SkillsBento />
