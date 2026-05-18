@@ -9,7 +9,10 @@ import Footer from './components/Footer'
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-black text-white selection:bg-white selection:text-black">
+    <div
+      className="portfolio-shell min-h-screen bg-black text-white selection:bg-white selection:text-black"
+      style={{ backgroundColor: '#000000' }}
+    >
       <Navbar />
       <Hero />
       <BioSwitcher />

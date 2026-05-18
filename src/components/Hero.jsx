@@ -12,7 +12,11 @@ export default function Hero() {
   }
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+    <section
+      id="hero"
+      className="hero-surface relative min-h-screen flex items-center justify-center overflow-hidden bg-black"
+      style={{ backgroundColor: '#000000' }}
+    >
       {/* Subtle grid */}
       <div
         className="absolute inset-0 opacity-[0.05] pointer-events-none"
@@ -32,7 +36,7 @@ export default function Hero() {
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 glass mb-10 text-xs font-medium tracking-wide text-text-muted uppercase"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-          Sleeper Agents research at Locai Labs
+          Research Intern at Locai Labs
         </motion.div>
 
         {/* Name */}
