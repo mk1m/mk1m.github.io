@@ -7,7 +7,7 @@ const entries = [
     location: 'London, England',
     period: 'Feb 2026 - Present',
     summary:
-      'Built sleeper-agent evaluation baselines in Gemma-3-4B, measured robustness under code-vulnerability attack settings, and evaluated whether interventions preserved MMLU and HellaSwag performance within 1.7% of a clean baseline.',
+      'Researching language model reliability, sleeper-agent behavior, and practical AI safety evaluation methods.',
   },
   {
     id: 'thermo',
@@ -17,7 +17,7 @@ const entries = [
     location: 'Pleasanton, CA',
     period: 'May 2024 - Aug 2024',
     summary:
-      'Engineered an automated monitoring and alerting pipeline with a two-minute refresh cadence, reducing operational alert latency by 15%, and developed a JavaScript/Angular telemetry utility for performance analysis.',
+      'Worked on production monitoring tools and internal telemetry systems for operational analytics.',
   },
   {
     id: 'commons',
@@ -27,7 +27,7 @@ const entries = [
     location: 'Remote',
     period: 'Dec 2023 - Apr 2024',
     summary:
-      'Implemented SQL/Azure ETL pipelines for 2M+ records, reduced dashboard refresh time by 50%, and translated usage patterns into KPI-driven Power BI reporting for product and operations stakeholders.',
+      'Built data pipelines and reporting workflows for product usage analytics and stakeholder dashboards.',
   },
   {
     id: 'factgrid',
@@ -37,8 +37,11 @@ const entries = [
     location: 'Berkeley, CA, USA',
     period: 'Aug 2022 - May 2023',
     summary:
-      'Cleaned and modeled historical datasets for linked open data workflows, using Python/Jupyter methods to support Wikidata and FactGrid integration.',
-    link: { url: '/papers/DS Showcase 2022 (1).pdf', label: 'Poster' },
+      'Contributed to linked open data research workflows for historical datasets and knowledge-base integration.',
+    link: {
+      url: 'https://drive.google.com/file/d/1oMlQkAH4OQz_ZdlvQQj5le_BZNdvLPZy/view?usp=sharing',
+      label: 'Poster',
+    },
   },
 ]
 

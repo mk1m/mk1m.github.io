@@ -38,15 +38,25 @@ body {
   color: var(--color-text);
 }
 
-a {
+a,
+button {
   color: var(--color-link);
   text-decoration: none;
   text-underline-offset: 3px;
 }
 
-a:hover {
+a:hover,
+button:hover {
   color: var(--color-link-hover);
   text-decoration: underline;
+}
+
+button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
 }
 
 .portfolio-shell {
@@ -105,6 +115,23 @@ a:hover {
   color: var(--color-text);
 }
 
+.nav-featured {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 3px 10px;
+  border: 1px solid rgba(49, 95, 114, 0.34);
+  border-radius: 999px;
+  color: var(--color-link) !important;
+  background: rgba(255, 254, 250, 0.72);
+}
+
+.nav-featured:hover {
+  border-color: rgba(49, 95, 114, 0.6);
+  background: #ffffff;
+  text-decoration: none;
+}
+
 .nav-toggle {
   display: none;
   border: 1px solid var(--color-border);
@@ -125,6 +152,24 @@ a:hover {
 
 .hero-inner {
   max-width: 760px;
+}
+
+.blog-page {
+  min-height: 68vh;
+}
+
+.blog-hero {
+  width: min(1040px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 92px 0 58px;
+}
+
+.blog-hero .hero-summary {
+  max-width: 720px;
+}
+
+.blog-section {
+  padding-top: 48px;
 }
 
 .eyebrow {
@@ -170,9 +215,51 @@ h1 {
 }
 
 .link-row a,
+.link-row button,
 .project-links a,
-.footer-links a {
+.footer-links a,
+.footer-links button {
   font-weight: 500;
+}
+
+.icon-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(49, 95, 114, 0.24);
+  border-radius: 50%;
+  color: var(--color-link);
+}
+
+.icon-link:hover {
+  border-color: rgba(49, 95, 114, 0.48);
+  background: #ffffff;
+  text-decoration: none;
+}
+
+.icon-link svg {
+  width: 16px;
+  height: 16px;
+}
+
+.copy-tooltip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  transform: translateX(-50%);
+  padding: 4px 8px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background: var(--color-surface);
+  box-shadow: 0 8px 24px rgba(32, 33, 36, 0.08);
+  color: var(--color-muted);
+  font-size: 0.78rem;
+  line-height: 1.2;
+  white-space: nowrap;
+  pointer-events: none;
 }
 
 .about-intro,
@@ -220,6 +307,32 @@ h2 {
   gap: 24px;
 }
 
+.project-list {
+  gap: 34px;
+}
+
+.project-group {
+  display: grid;
+  gap: 16px;
+  padding-top: 22px;
+  border-top: 1px solid var(--color-border);
+}
+
+.project-group:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.project-section-title {
+  margin: 0;
+  color: var(--color-subtle);
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
 .entry,
 .project-entry {
   display: grid;
@@ -231,6 +344,11 @@ h2 {
 
 .entry:last-child,
 .project-entry:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.project-entry {
   padding-bottom: 0;
   border-bottom: 0;
 }
@@ -317,6 +435,7 @@ h3 {
   padding: 46px 0 64px;
   border-top: 1px solid var(--color-border);
   display: flex;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 32px;
 }
@@ -332,13 +451,23 @@ h3 {
 .footer-links {
   display: flex;
   flex-wrap: wrap;
+  align-items: baseline;
   justify-content: flex-end;
   gap: 10px 18px;
+}
+
+.footer-links a,
+.footer-links button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.65em;
+  line-height: 1.65;
 }
 
 @media (max-width: 760px) {
   .site-nav,
   .hero,
+  .blog-hero,
   .section-block,
   .site-footer {
     width: min(100% - 28px, 1040px);
@@ -362,6 +491,10 @@ h3 {
 
   .hero {
     padding-top: 54px;
+  }
+
+  .blog-hero {
+    padding: 54px 0 38px;
   }
 
   .about-intro,
