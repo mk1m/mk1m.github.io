@@ -1,10 +1,10 @@
-const researchNoteFiles = import.meta.glob('./research-notes/*.md', {
+const researchNoteFiles = import.meta.glob(['./research-notes/*.md', '!./research-notes/_*.md'], {
   eager: true,
   import: 'default',
   query: '?raw',
 })
 
-const blogPostFiles = import.meta.glob('./blog-posts/*.md', {
+const blogPostFiles = import.meta.glob(['./blog-posts/*.md', '!./blog-posts/_*.md'], {
   eager: true,
   import: 'default',
   query: '?raw',
@@ -80,7 +80,6 @@ function parseFrontmatter(raw, fallbackSlug) {
 
 function loadCollection(files, type) {
   return Object.entries(files)
-    .filter(([path]) => !slugFromPath(path).startsWith('_'))
     .map(([path, raw]) => {
       const slug = slugFromPath(path)
       const { meta, body } = parseFrontmatter(raw, slug)
