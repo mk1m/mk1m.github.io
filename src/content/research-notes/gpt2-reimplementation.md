@@ -2,7 +2,7 @@
 title: Reimplementing GPT-2 Attention from Scratch
 date: 2026-05-28
 summary: One concise sentence about the research question, method, and takeaway.
-tags: mechanistic interpretability, activation steering, transformers
+tags: transformers, mechanistic interpretability, activation steering
 status: Draft
 github:
 notebook:
