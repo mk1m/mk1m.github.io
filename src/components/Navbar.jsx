@@ -6,12 +6,10 @@ export default function Navbar({ page = 'home' }) {
   const homePrefix = page === 'home' ? '' : './'
   const navLinks = [
     { label: 'About', href: `${homePrefix}#about` },
-    { label: 'Education', href: `${homePrefix}#education` },
-    { label: 'Experience', href: `${homePrefix}#experience` },
+    { label: 'Research Notes', href: `${homePrefix}#notes` },
+    { label: 'Blog Posts', href: `${homePrefix}#posts` },
     { label: 'Projects', href: `${homePrefix}#projects` },
-    { label: 'Skills', href: `${homePrefix}#skills` },
-    { label: 'Interests', href: `${homePrefix}#interests` },
-    { label: 'Blog', href: './blog.html', featured: true },
+    { label: 'Writing', href: './blog.html', featured: true },
   ]
 
   useEffect(() => {

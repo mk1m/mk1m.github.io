@@ -19,6 +19,8 @@ export default defineConfig({
       input: {
         main: resolve(rootDir, 'index.html'),
         blog: resolve(rootDir, 'blog.html'),
+        researchNotes: resolve(rootDir, 'research-notes.html'),
+        blogPosts: resolve(rootDir, 'blog-posts.html'),
       },
     },
   },

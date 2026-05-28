@@ -1,10 +1,9 @@
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import Education from './components/Education'
-import Timeline from './components/Timeline'
+import ResearchNotes from './components/ResearchNotes'
+import BlogPosts from './components/BlogPosts'
 import Projects from './components/Projects'
-import SkillsBento from './components/SkillsBento'
-import Hobbies from './components/Hobbies'
+import SkillsAndHobbies from './components/SkillsAndHobbies'
 import Footer from './components/Footer'
 
 export default function App() {
@@ -12,11 +11,10 @@ export default function App() {
     <div className="portfolio-shell">
       <Navbar />
       <Hero />
-      <Education />
-      <Timeline />
+      <ResearchNotes />
+      <BlogPosts />
       <Projects />
-      <SkillsBento />
-      <Hobbies />
+      <SkillsAndHobbies />
       <Footer />
     </div>
   )

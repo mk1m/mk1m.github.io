@@ -14,7 +14,7 @@ export default function Footer() {
     <footer id="contact" className="site-footer">
       <div>
         <h2>Minoo Kim</h2>
-        <p>Data Science and Machine Learning / AI Safety / Model Evaluation</p>
+        <p>Data Science and Machine Learning / AI Safety </p>
       </div>
       <div className="footer-links">
         <button className="icon-link copy-email-button" type="button" onClick={copyEmail} aria-label="Copy email">
@@ -39,7 +39,7 @@ export default function Footer() {
         >
           <FiGithub aria-hidden="true" />
         </a>
-        <button type="button" onClick={copyEmail}>
+        <button className="text-link" type="button" onClick={copyEmail}>
           Request CV
         </button>
       </div>
