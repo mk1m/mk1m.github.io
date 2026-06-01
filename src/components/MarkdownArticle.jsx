@@ -7,12 +7,40 @@ function escapeHtml(value) {
     .replaceAll("'", '&#039;')
 }
 
-function inlineMarkdown(value) {
+function inlineMarkdown(value, itemSlug) {
   return escapeHtml(value)
+    .replace(/\[((?:@[A-Za-z0-9_:-]+(?:;\s*)?)+)\]/g, (_, citations) => {
+      const links = citations
+        .split(';')
+        .map((citation) => citation.trim().replace(/^@/, ''))
+        .filter(Boolean)
+        .map((key) => `<a href="#${itemSlug}/ref-${key}">@${key}</a>`)
+      return `<span class="citation">[${links.join('; ')}]</span>`
+    })
     .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" />')
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
     .replace(/`([^`]+)`/g, '<code>$1</code>')
     .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+}
+
+function slugify(value) {
+  return value
+    .toLowerCase()
+    .replace(/<[^>]*>/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')
+}
+
+function parseTableRow(line) {
+  return line
+    .trim()
+    .replace(/^\||\|$/g, '')
+    .split('|')
+    .map((cell) => cell.trim())
+}
+
+function isTableSeparator(line) {
+  return /^\|?[\s:-]+\|[\s|:-]+$/.test(line.trim())
 }
 
 function flushParagraph(blocks, paragraph) {
@@ -51,6 +79,30 @@ function parseMarkdown(markdown) {
       continue
     }
 
+    if (trimmed.startsWith('> ')) {
+      flushParagraph(blocks, paragraph)
+      const quote = []
+      while (index < lines.length && lines[index].trim().startsWith('> ')) {
+        quote.push(lines[index].trim().slice(2))
+        index += 1
+      }
+      blocks.push({ type: 'quote', text: quote.join(' ') })
+      continue
+    }
+
+    if (trimmed.startsWith('|') && index + 1 < lines.length && isTableSeparator(lines[index + 1])) {
+      flushParagraph(blocks, paragraph)
+      const headers = parseTableRow(trimmed)
+      const rows = []
+      index += 2
+      while (index < lines.length && lines[index].trim().startsWith('|')) {
+        rows.push(parseTableRow(lines[index]))
+        index += 1
+      }
+      blocks.push({ type: 'table', headers, rows })
+      continue
+    }
+
     if (trimmed === '$$') {
       flushParagraph(blocks, paragraph)
       const equation = []
@@ -85,14 +137,25 @@ function parseMarkdown(markdown) {
       continue
     }
 
-    if (trimmed.startsWith('- ')) {
+    if (/^[-*]\s+/.test(trimmed)) {
       flushParagraph(blocks, paragraph)
       const items = []
-      while (index < lines.length && lines[index].trim().startsWith('- ')) {
-        items.push(lines[index].trim().slice(2))
+      while (index < lines.length && /^[-*]\s+/.test(lines[index].trim())) {
+        items.push(lines[index].trim().replace(/^[-*]\s+/, ''))
         index += 1
       }
       blocks.push({ type: 'list', items })
+      continue
+    }
+
+    if (/^\d+\.\s+/.test(trimmed)) {
+      flushParagraph(blocks, paragraph)
+      const items = []
+      while (index < lines.length && /^\d+\.\s+/.test(lines[index].trim())) {
+        items.push(lines[index].trim().replace(/^\d+\.\s+/, ''))
+        index += 1
+      }
+      blocks.push({ type: 'ordered-list', items })
       continue
     }
 
@@ -104,15 +167,16 @@ function parseMarkdown(markdown) {
   return blocks
 }
 
-function MarkdownBlock({ block }) {
+function MarkdownBlock({ block, itemSlug }) {
   if (block.type === 'heading') {
     const Tag = `h${Math.min(block.level + 1, 4)}`
-    return <Tag>{block.text}</Tag>
+    return <Tag id={slugify(block.text)} dangerouslySetInnerHTML={{ __html: inlineMarkdown(block.text, itemSlug) }} />
   }
 
   if (block.type === 'code') {
+    const languageClass = block.language ? ` language-${slugify(block.language)}` : ''
     return (
-      <pre className="code-block">
+      <pre className={`code-block${languageClass}`}>
         <code>{block.text}</code>
       </pre>
     )
@@ -125,14 +189,63 @@ function MarkdownBlock({ block }) {
   if (block.type === 'list') {
     return (
       <ul>
-        {block.items.map((item) => (
-          <li key={item} dangerouslySetInnerHTML={{ __html: inlineMarkdown(item) }} />
-        ))}
+        {block.items.map((item) => {
+          const reference = item.match(/^\[([A-Za-z0-9_:-]+)\]\s*(.*)/)
+          if (reference) {
+            const [, key, text] = reference
+            return (
+              <li id={`ref-${key}`} key={item}>
+                <a className="reference-key" href={`#${itemSlug}/ref-${key}`}>[{key}]</a>{' '}
+                <span dangerouslySetInnerHTML={{ __html: inlineMarkdown(text, itemSlug) }} />
+              </li>
+            )
+          }
+          return <li key={item} dangerouslySetInnerHTML={{ __html: inlineMarkdown(item, itemSlug) }} />
+        })}
       </ul>
     )
   }
 
-  return <p dangerouslySetInnerHTML={{ __html: inlineMarkdown(block.text) }} />
+  if (block.type === 'ordered-list') {
+    return (
+      <ol>
+        {block.items.map((item) => (
+          <li key={item} dangerouslySetInnerHTML={{ __html: inlineMarkdown(item, itemSlug) }} />
+        ))}
+      </ol>
+    )
+  }
+
+  if (block.type === 'quote') {
+    return <blockquote dangerouslySetInnerHTML={{ __html: inlineMarkdown(block.text, itemSlug) }} />
+  }
+
+  if (block.type === 'table') {
+    return (
+      <div className="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              {block.headers.map((header) => (
+                <th key={header} dangerouslySetInnerHTML={{ __html: inlineMarkdown(header, itemSlug) }} />
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {block.rows.map((row, rowIndex) => (
+              <tr key={`${row.join('-')}-${rowIndex}`}>
+                {block.headers.map((header, cellIndex) => (
+                  <td key={`${header}-${cellIndex}`} dangerouslySetInnerHTML={{ __html: inlineMarkdown(row[cellIndex] || '', itemSlug) }} />
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    )
+  }
+
+  return <p dangerouslySetInnerHTML={{ __html: inlineMarkdown(block.text, itemSlug) }} />
 }
 
 export default function MarkdownArticle({ item }) {
@@ -156,7 +269,7 @@ export default function MarkdownArticle({ item }) {
 
       <div className="markdown-body">
         {blocks.map((block, index) => (
-          <MarkdownBlock block={block} key={`${block.type}-${index}`} />
+          <MarkdownBlock block={block} itemSlug={item.slug} key={`${block.type}-${index}`} />
         ))}
       </div>
 

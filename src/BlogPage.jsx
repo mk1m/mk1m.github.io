@@ -64,8 +64,8 @@ export default function BlogPage() {
           <p className="eyebrow"></p>
           <h1>Research Notes and Blog Posts</h1>
           <p className="hero-summary">
-            Technical writing on LLM behavior, mechanistic interpretability, activation steering, representation
-            engineering, alignment evaluations, and sleeper agent experiments.
+            Technical writing on LLM behavior, mechanistic interpretability, activation steering, 
+            alignment evaluations, experiments, and paper reviews or discussions.
           </p>
           <TagLinks tags={tagCatalog} basePath="./blog.html" selectedTags={selectedTags} />
           <ActiveTagFilters selectedTags={selectedTags} path="./blog.html" />

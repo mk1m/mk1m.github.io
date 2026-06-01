@@ -10,7 +10,7 @@ const pageConfig = {
     title: 'Research Notes',
     eyebrow: 'Experiments and reading notes',
     summary:
-      'Technical notes on LLM behavior, mechanistic interpretability, activation steering, representation engineering, and safety evaluations.',
+      'Technical notes on machine learning, AI safety, and data science topics, including paper reviews and discussions I use for learning.',
     empty: 'Research notes will appear here.',
     items: researchNotes,
     path: './research-notes.html',
@@ -27,7 +27,7 @@ const pageConfig = {
 }
 
 function getSelectedItem(items, hash) {
-  const slug = hash.replace(/^#/, '')
+  const slug = hash.replace(/^#/, '').split('/')[0]
   return items.find((item) => item.slug === slug)
 }
 
@@ -107,6 +107,15 @@ export default function WritingPage({ kind = 'notes' }) {
       document.removeEventListener('click', onClick)
     }
   }, [])
+
+  useEffect(() => {
+    if (!selectedItem) return
+    const [, anchor] = hash.replace(/^#/, '').split('/')
+    if (!anchor) return
+    window.requestAnimationFrame(() => {
+      document.getElementById(anchor)?.scrollIntoView({ block: 'start' })
+    })
+  }, [hash, selectedItem])
 
   return (
     <div className="portfolio-shell">

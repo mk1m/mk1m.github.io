@@ -576,11 +576,38 @@ h3 {
   margin: 12px 0 0;
 }
 
-.markdown-body ul {
+.markdown-body strong {
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.markdown-body a {
+  color: #315f72;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+.markdown-body ul,
+.markdown-body ol {
   display: grid;
   gap: 8px;
   margin: 14px 0 0;
   padding-left: 20px;
+}
+
+.markdown-body li {
+  padding-left: 2px;
+}
+
+.markdown-body blockquote {
+  margin: 18px 0 0;
+  padding: 14px 18px;
+  border-left: 3px solid rgba(49, 95, 114, 0.55);
+  background: #f7f5ee;
+  color: var(--color-text);
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
 }
 
 .markdown-body img {
@@ -621,6 +648,7 @@ h3 {
 
 .code-block {
   overflow-x: auto;
+  max-width: 100%;
   padding: 18px;
   border: 1px solid rgba(222, 219, 210, 0.86);
   border-radius: 6px;
@@ -629,6 +657,63 @@ h3 {
   font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
   font-size: 0.86rem;
   line-height: 1.6;
+}
+
+.code-block.language-figure {
+  white-space: pre-wrap;
+  border-color: rgba(49, 95, 114, 0.28);
+  background: #f7f5ee;
+  color: var(--color-text);
+  font-size: 0.9rem;
+}
+
+.citation {
+  white-space: nowrap;
+  font-size: 0.92em;
+}
+
+.citation a,
+.reference-key {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+  font-size: 0.9em;
+}
+
+.table-scroll {
+  max-width: 100%;
+  margin-top: 18px;
+  overflow-x: auto;
+  border: 1px solid rgba(222, 219, 210, 0.86);
+  border-radius: 6px;
+}
+
+.markdown-body table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  background: #fffdf7;
+  font-size: 0.9rem;
+}
+
+.markdown-body th,
+.markdown-body td {
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(222, 219, 210, 0.86);
+  text-align: left;
+  vertical-align: top;
+}
+
+.markdown-body th {
+  color: var(--color-text);
+  font-weight: 700;
+  background: #f4f1e9;
+}
+
+.markdown-body td {
+  color: var(--color-muted);
+}
+
+.markdown-body tr:last-child td {
+  border-bottom: 0;
 }
 
 .interactive-figure {

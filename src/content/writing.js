@@ -15,8 +15,7 @@ export const tagCatalog = [
   'transformers',
   'activation steering',
   'alignment',
-  'evaluations',
-  'representation engineering',
+  'backdoor attacks',
 ]
 
 function slugFromPath(path) {
