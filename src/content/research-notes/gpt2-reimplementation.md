@@ -1,6 +1,6 @@
 ---
 title: Rebuilding GPT-2 to Understand the Residual Stream
-date: 2026-05-28
+date: 2026-07-09
 summary: A short reflection on reimplementing GPT-2 from scratch to build implementation-level intuitions about transformer internals.
 tags: transformers, mechanistic interpretability
 status: 
@@ -51,7 +51,7 @@ More broadly, work on [synergistic cores in LLMs](https://arxiv.org/abs/2601.068
 
 ## Takeaways
 
-The main value of reimplementing GPT-2 was converting familiar abstractions, like attention heads, MLPs, residual streams, activation directions, into more concrete operations that I could implement, test, and reason about directly.
+ The main value of reimplementing GPT-2 was converting familiar abstractions, like attention heads, MLPs, residual streams, activation directions, into more concrete operations that I could implement, test, and reason about directly.
 
 For example, when reading work on activation steering, representation editing, or backdoor mitigation, I can now more clearly separate several questions: where a behavior is represented, which components write that information, which later components use it, and what kind of intervention would actually change the computation.
 
@@ -63,6 +63,7 @@ Modern models differ in important ways, but the core habit of tracing how inform
 - McDougall et al., [ARENA 3.0: Transformer from Scratch](https://github.com/callummcdougall/ARENA_3.0).
 - Nanda and Bloom, [TransformerLens](https://github.com/TransformerLensOrg/TransformerLens).
 - Li and Kim, [BD-VAX: Purifying Generative LLMs from Backdoors](https://bd-vax.github.io/).
-- Turner et al., [Steering Language Models With Activation Engineering](https://arxiv.org/abs/2308.10248).
+- Turner et al, [Steering Language Models With Activation Engineering
+](https://arxiv.org/abs/2308.10248)
 - Gurnee, et al., ["Verbalizable Representations Form a Global Workspace in Language Models"](https://transformer-circuits.pub/2026/workspace/index.html#methods-jspace), Transformer Circuits, 2026.
 - Urbina-Rodriguez et al., [A Brain-like Synergistic Core in LLMs Drives Behaviour and Learning](https://arxiv.org/abs/2601.06851).

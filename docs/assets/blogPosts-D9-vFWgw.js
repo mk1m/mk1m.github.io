@@ -1,1 +1,0 @@
-import{R as e,j as t,f as o}from"./index-Cp07VYPo.js";import{W as r}from"./WritingPage-yeYcLEoW.js";e.createRoot(document.getElementById("root")).render(t.jsx(o.StrictMode,{children:t.jsx(r,{kind:"posts"})}));
