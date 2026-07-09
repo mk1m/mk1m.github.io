@@ -18,9 +18,7 @@ export default function Hero() {
           <h1>Minoo Kim</h1>
           <p className="hero-title">MSc Data Science and Machine Learning @ UCL.</p>
           <p className="hero-summary">
-            Studying LLM behavior, alignment failures, and representation-level interventions. My current work centers on
-            sleeper agent behavior, activation steering, safety evaluations, and whether model internals can be changed
-            in ways that produce robust behavioral improvements.
+            
           </p>
           <div className="link-row" aria-label="Contact and profile links">
             <button className="icon-link copy-email-button" type="button" onClick={copyEmail} aria-label="Copy email">
@@ -56,14 +54,12 @@ export default function Hero() {
         <h2 id="about-heading">Technical Bio</h2>
         <div>
           <p>
-            I am an <b>MSc student at University College London</b> and a <b>UC Berkeley Data Science</b> alum. I work across AI
-            safety, model evaluation, interpretability, and applied ML systems, with a preference for small experiments
-            that make model behavior easier to inspect and falsify.
+            <b>MSc student at University College London</b> and <b>UC Berkeley Data Science</b> alum. This site is organized as a technical notebook, containing
+            research notes, experiment writeups, and project artifacts.
           </p>
           <p>
-            At Locai Labs, I am researching language model reliability, sleeper-agent behavior, robustness under
-            different attack profiles, and inference-time interventions. This site is organized as a technical notebook, containing
-            research notes, experiment writeups, and project artifacts.
+            Currently: At Locai Labs, I am researching data poisoning, backdoor behavior, robustness under
+            different attack profiles, and inference-time interventions.
           </p>
         </div>
       </section>

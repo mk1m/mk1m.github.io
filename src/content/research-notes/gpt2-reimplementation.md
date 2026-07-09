@@ -63,7 +63,6 @@ Modern models differ in important ways, but the core habit of tracing how inform
 - McDougall et al., [ARENA 3.0: Transformer from Scratch](https://github.com/callummcdougall/ARENA_3.0).
 - Nanda and Bloom, [TransformerLens](https://github.com/TransformerLensOrg/TransformerLens).
 - Li and Kim, [BD-VAX: Purifying Generative LLMs from Backdoors](https://bd-vax.github.io/).
-- Turner et al, [Steering Language Models With Activation Engineering
-](https://arxiv.org/abs/2308.10248)
+- Turner et al, [Steering Language Models With Activation Engineering](https://arxiv.org/abs/2308.10248)
 - Gurnee, et al., ["Verbalizable Representations Form a Global Workspace in Language Models"](https://transformer-circuits.pub/2026/workspace/index.html#methods-jspace), Transformer Circuits, 2026.
 - Urbina-Rodriguez et al., [A Brain-like Synergistic Core in LLMs Drives Behaviour and Learning](https://arxiv.org/abs/2601.06851).

@@ -42,7 +42,7 @@ export default function ResearchNotes() {
               </article>
             ))
           ) : (
-            <p className="empty-state">Research notes will appear here.</p>
+            <p className="empty-state">Notes will appear here.</p>
           )}
         </div>
       </div>
