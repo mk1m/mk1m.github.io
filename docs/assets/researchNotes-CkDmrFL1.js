@@ -1,1 +1,0 @@
-import{R as e,j as t,f as o}from"./index-DmRGi9Ki.js";import{W as r}from"./WritingPage-CHCRou6B.js";e.createRoot(document.getElementById("root")).render(t.jsx(o.StrictMode,{children:t.jsx(r,{kind:"notes"})}));
