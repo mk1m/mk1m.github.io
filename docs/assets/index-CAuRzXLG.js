@@ -253,15 +253,15 @@ Some questions I think would be interesting, and may not be fully answered yet:
 
 ## My Takeaways:
 
-- **CleanGen** is practical but does not remove the backdoor.
-- **CROW** is elegant and lightweight but relies on a specific representation-level hypothesis.
-- **BD-VAX** is more mechanistic and targeted but unconfirmed for more realistic backdoor cases.
-- **Pruning and quantization** are necessary baselines but not backdoor-specific.
-- **BackdoorAlign** reframes the problem as safety persistence under tampering.
-- **Sleeper Agents** shows why naive safety training can create false confidence.
+- **CleanGen** is practical but does not fully remove the backdoor.
+- **CROW** is lightweight but relies on a specific representation-level hypothesis.
+- **BD-VAX** is more mechanistic and targeted but probably less confirmed for more realistic backdoor cases (similar to CROW).
+- **Pruning and quantization** are necessary baselines.
+- **BackdoorAlign** reframes the problem as safety persistence.
+- **Sleeper Agents** shows why naive safety training is not a complete solution.
 - **BackdoorLLM** is useful because it forces these methods into a shared evaluation frame.
 
-The main open challenge is no longer just reducing ASR on backdoored models. It is showing that a defense removes a general malicious mechanism while preserving useful behavior under realistic, adaptive, and security-relevant evaluations.
+The main open challenge I can gather is showing that a defense removes a general backdoored/malicious mechanism while preserving useful behavior under realistic, adaptive, and security-relevant evaluations. For example, evaluating if a defense truly removed a backdoor (not just reduced ASR) seems necessary.
 
 ## References
 
